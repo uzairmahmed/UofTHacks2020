@@ -1,3 +1,5 @@
+import sys
+
 def hello_gcs(event, context):
     """Triggered by a change to a Cloud Storage bucket.
     Args:
@@ -9,3 +11,4 @@ def hello_gcs(event, context):
     print(f"Processing file: {file['name']}.")"""
     print("Hello World")
 
+sys.modules[__name__] = hello_gcs
