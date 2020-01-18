@@ -1,2 +1,3 @@
 # ignore the keys file 
 MathAPI/keys.json
+.DS_Store
