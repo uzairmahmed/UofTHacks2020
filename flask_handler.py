@@ -5,3 +5,5 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     return '<h1>This is the index page</h1>'
+
+app.run(debug=True)
