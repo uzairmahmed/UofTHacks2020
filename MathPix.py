@@ -22,8 +22,11 @@ import requests
 import json
 import os
 
-API_ID = os.getenv('APP_ID')
-API_KEY = os.getenv('APP_KEY')
+#API_ID = os.getenv('APP_ID')
+#API_KEY = os.getenv('APP_KEY')
+
+APP_ID="uzairmahmed_gmail_com"
+APP_KEY="59d1d27c256ef2b2a8ea"
 
 def handToMath(file_info):
 
