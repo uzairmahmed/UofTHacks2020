@@ -27,8 +27,11 @@ API_KEY = os.getenv('APP_KEY')
 
 def handToMath(file_info):
 
-    print(type(file_info)
+    print(type(file_info))
     print(type(file_info.decode()))
+
+    print(file_info)
+    print(file_info.decode())
 
     print("Math gotten")
     image_uri = "data:image/jpg;base64," + file_info.decode()
