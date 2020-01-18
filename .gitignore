@@ -1,3 +1,4 @@
-# ignore the keys file 
+# ignore the following files
 MathAPI/keys.json
-.DS_Store
+HandWritingAPI/keys.json
+iPadApp/.DS_Store
