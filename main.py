@@ -19,9 +19,19 @@ def hello_gcs(event, context):
 
     file_name = '/' + event['bucket'] + '/' + event['name']
 
+    print("File name: {}".format(file_name))
+
     gcs_file = cloudstorage.open(file_name)
+    
+    print("GCS_FILE")
+
     contents = gcs_file.read()
+
+    print("CONTENTS")
+
     gcs_file.close()
+
+    print("CLOSED")
 
     file_info = send_file(io.BytesIO(contents), mimetype='image/png')
 
