@@ -1,6 +1,6 @@
 import sys
 
-from MathPix import handToMath
+#from MathPix import handToMath
 #import cloudstorage
 
 def hello_gcs(event, context):

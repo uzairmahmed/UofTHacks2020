@@ -1,4 +1,4 @@
-from io import StringIO
+"""from io import StringIO
 
 {
   "src": "data:image/jpeg;base64,...",
@@ -36,3 +36,4 @@ def handToMath(file_info):
     dump = json.dumps(json.loads(r.text), indent=4, sort_keys=True)
     loaded = json.loads(dump)
     return(loaded["latex_normal"])
+"""
