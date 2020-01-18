@@ -17,6 +17,8 @@ def hello_gcs(event, context):
     print('Created: {}'.format(event['timeCreated']))
     print('Updated: {}'.format(event['updated']))
 
+    client = storage.Client()
+    
     # Get the file that has been uploaded to GCS
     bucket = client.get_bucket(event['bucket'])
     print("bucket success")
@@ -24,7 +26,7 @@ def hello_gcs(event, context):
     print("blob success")
     imagedata = blob.download_as_string()
     print ("imagedata success")
-    
+
     print(imagedata)
 
     """
