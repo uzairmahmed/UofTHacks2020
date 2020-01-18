@@ -1,11 +1,3 @@
-env
+.git
 .env
 .vscode
-./Uzair APIs
-Connect.py
-flask_handler
-Procfile
-requirements.txt
-
-Project/
-cloudcode/.env
