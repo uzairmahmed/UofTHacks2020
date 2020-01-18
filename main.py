@@ -6,6 +6,7 @@ def hello_gcs(event, context):
          event (dict): Event payload.
          context (google.cloud.functions.Context): Metadata for the event.
     """
+    """
     file = event
-    print(f"Processing file: {file['name']}.")
-    print(f"{file['msg']}")
+    print(f"Processing file: {file['name']}.")"""
+    print("Hello World")
