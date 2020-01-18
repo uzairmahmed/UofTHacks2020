@@ -1,5 +1,3 @@
-from MathPix import handToMath as get_math
-
 def hello_gcs(event, context):
     """Triggered by a change to a Cloud Storage bucket.
     Args:
