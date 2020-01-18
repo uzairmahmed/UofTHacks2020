@@ -13,5 +13,7 @@ def hello_gcs(event, context):
     print('Metageneration: {}'.format(event['metageneration']))
     print('Created: {}'.format(event['timeCreated']))
     print('Updated: {}'.format(event['updated']))
+    return {"Event_id": context.event_id, "Event_type":context.event_type,
+     "Bucket":event['bucket'], "Name":event['name'], "metageneration": event['metageneration']}
 
 sys.modules[__name__] = hello_gcs
