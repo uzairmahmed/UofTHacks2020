@@ -10,3 +10,4 @@ def hello_gcs(event, context):
     file = event
     print(f"Processing file: {file['name']}.")"""
     print("Hello World")
+
