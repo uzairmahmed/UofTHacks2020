@@ -37,6 +37,6 @@ def handToMath(file_info):
     dump = json.dumps(json.loads(r.text), indent=4, sort_keys=True)
     loaded = json.loads(dump)
 
-    print(loaded["latex_normal"])
+    print(loaded)
 
     return(loaded["latex_normal"])
