@@ -1,6 +1,6 @@
 import sys
 
-from MathPix import handToMath
+from MathPix import handToMath as get_math
 from google.cloud import storage
 
 def hello_gcs(event, context):
@@ -18,7 +18,7 @@ def hello_gcs(event, context):
     print('Updated: {}'.format(event['updated']))
 
     client = storage.Client()
-    
+
     # Get the file that has been uploaded to GCS
     bucket = client.get_bucket(event['bucket'])
     print("bucket success")
@@ -29,16 +29,7 @@ def hello_gcs(event, context):
 
     print(imagedata)
 
-    """
-    # Create a new image object and resample it
-    newimage = Image(blob=imagedata)
-    newimage.sample(200,200)
-
-    # Upload the resampled image to the other bucket
-    bucket = client.get_bucket(THUMBNAIL_BUCKET)
-    newblob = bucket.blob('thumbnail-' + data['name'])     
-    newblob.upload_from_string(newimage.make_blob())
-    """
+    latex_info = get_math(imagedata)
     return imagedata
 
 
