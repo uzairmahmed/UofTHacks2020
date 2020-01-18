@@ -1,7 +1,7 @@
 import sys
 
 from MathPix import handToMath
-import cloudstorage
+from google.cloud import storage
 
 def hello_gcs(event, context):
     """Triggered by a change to a Cloud Storage bucket.
@@ -17,27 +17,27 @@ def hello_gcs(event, context):
     print('Created: {}'.format(event['timeCreated']))
     print('Updated: {}'.format(event['updated']))
 
-    file_name = '/' + event['bucket'] + '/' + event['name']
-
-    print("File name: {}".format(file_name))
-
-    gcs_file = cloudstorage.open(file_name)
+    # Get the file that has been uploaded to GCS
+    bucket = client.get_bucket(event['bucket'])
+    print("bucket success")
+    blob = bucket.get_blob(event['name'])
+    print("blob success")
+    imagedata = blob.download_as_string()
+    print ("imagedata success")
     
-    print("GCS_FILE")
+    print(imagedata)
 
-    contents = gcs_file.read()
+    """
+    # Create a new image object and resample it
+    newimage = Image(blob=imagedata)
+    newimage.sample(200,200)
 
-    print("CONTENTS")
-
-    gcs_file.close()
-
-    print("CLOSED")
-
-    file_info = send_file(io.BytesIO(contents), mimetype='image/png')
-
-    print(file_info)
-
-    return file_info
+    # Upload the resampled image to the other bucket
+    bucket = client.get_bucket(THUMBNAIL_BUCKET)
+    newblob = bucket.blob('thumbnail-' + data['name'])     
+    newblob.upload_from_string(newimage.make_blob())
+    """
+    return imagedata
 
 
 sys.modules[__name__] = hello_gcs
