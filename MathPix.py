@@ -20,11 +20,12 @@ import sys
 import base64
 import requests
 import json
+import os
 
 with open('./MathAPI/keys.json') as json_file:
     data = json.load(json_file)
-    API_ID = data['APP_ID']
-    API_KEY = data['APP_KEY']
+    API_ID = os.getenv('APP_ID')
+    API_KEY = os.getenv'APP_KEY')
 
 def handToMath(file_path):
     image_uri = "data:image/jpg;base64," + base64.b64encode(open(file_path, "rb").read()).decode()
@@ -36,5 +37,3 @@ def handToMath(file_path):
     dump = json.dumps(json.loads(r.text), indent=4, sort_keys=True)
     loaded = json.loads(dump)
     return(loaded["latex_normal"])
-
-print(handToMath("./MathAPI/testingImages/test5.png"))
