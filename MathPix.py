@@ -26,8 +26,12 @@ API_ID = os.getenv('APP_ID')
 API_KEY = os.getenv('APP_KEY')
 
 def handToMath(file_info):
+
+    print(type(file_info)
+    print(type(file_info.decode()))
+
     print("Math gotten")
-    image_uri = "data:image/jpg;base64," + base64.b64encode(file_info).decode()
+    image_uri = "data:image/jpg;base64," + file_info.decode()
     print(image_uri)
     r = requests.post("https://api.mathpix.com/v3/latex",
         data=json.dumps({'src': image_uri, 'formats': ['latex_normal']}),
