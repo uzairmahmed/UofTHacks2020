@@ -1,7 +1,7 @@
 import sys
 
 from MathPix import handToMath
-import cloudstorage
+#import cloudstorage
 
 def hello_gcs(event, context):
     """Triggered by a change to a Cloud Storage bucket.
@@ -19,16 +19,16 @@ def hello_gcs(event, context):
 
     file_name = '/' + event['bucket'] + '/' + event['name']
 
-    gcs_file = cloudstorage.open(file_name)
-    contents = gcs_file.read()
-    gcs_file.close()
+    #gcs_file = cloudstorage.open(file_name)
+    #contents = gcs_file.read()
+    #gcs_file.close()
 
-    file_info = send_file(io.BytesIO(contents),
-                   mimetype='image/png')
+    #file_info = send_file(io.BytesIO(contents),
+    #               mimetype='image/png')
 
-    print(file_info)
+    #print(file_info)
 
-    return file_info
+    #return file_info
 
 
 sys.modules[__name__] = hello_gcs
