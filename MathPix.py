@@ -22,13 +22,12 @@ import requests
 import json
 import os
 
-with open('./MathAPI/keys.json') as json_file:
-    data = json.load(json_file)
-    API_ID = os.getenv('APP_ID')
-    API_KEY = os.getenv'APP_KEY')
+API_ID = os.getenv('APP_ID')
+API_KEY = os.getenv('APP_KEY')
 
-def handToMath(file_path):
-    image_uri = "data:image/jpg;base64," + base64.b64encode(open(file_path, "rb").read()).decode()
+def handToMath(file_info):
+    print("Math gotten")
+    image_uri = "data:image/jpg;base64," + base64.b64encode("""open(file_path, "rb").read()""").decode()
     r = requests.post("https://api.mathpix.com/v3/latex",
         data=json.dumps({'src': image_uri, 'formats': ['latex_normal']}),
         headers={"app_id": API_ID, "app_key": API_KEY,
