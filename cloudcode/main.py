@@ -3,7 +3,7 @@ import sys
 import json
 from google.cloud import storage
 from google.cloud import firestore
-#import google.cloud.exceptions
+import google.cloud.exceptions
 
 from MathPix import handToMath as get_math
 from handwriting import handWriting_OCR as get_writing
@@ -61,7 +61,7 @@ def hand_write(imagedata):
 
 def write_to_db(data, mode):
     print("Writing to database")
-    current_element = check_current_element()
+    document = get_document()
     if mode == "math":
         pass
 
@@ -69,20 +69,23 @@ def write_to_db(data, mode):
     else:
         pass
 
-#TODO: Finish this
-def check_current_element():
-    print("Checking current elements")
-    documents = get_documents()
-    print("Documents received")
 
-    return 0
+def get_document():
+    doc_name = 'demo'
+    doc_contents = None
+    documents = get_document(doc_name)
 
-def get_documents():
-    print("Checking documents")
-    docs = db.collection(MAIN_COLLECTION).stream()
-    print("Documents found")
-    print("Doctor:",type(docs))
-    print("Doctor:",docs)
+    try:
+        doc_contents = documents.get()
+        print(u'Contents:{}'.format(doc_contents))
+        print(u'Contents Type:{}'.format(type(doc_contents)))
+    except:
+        print(u'Can\'t find document)
+
+    return doc_contents
+
+def get_document(doc_name):
+    docs = db.collection(MAIN_COLLECTION).document(doc_name)
     return docs
 
 def start_fire():
