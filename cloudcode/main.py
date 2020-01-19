@@ -39,12 +39,12 @@ def hello_gcs(event, context):
         data = parse_for_db(mode="math", payload=math)
 
 
-    else if meta_id == "write"
+    elif meta_id == "write"
         #Image ran through OCR api
         writing = hand_write(image_bytes)
         data = parse_for_db(mode="write", payload=writing)
 
-    else if meta_id == "code"
+    elif meta_id == "code"
         #Image ran through OCR api for coding
         coding = hand_write(image_bytes)
         data = parse_for_db(mode="code", payload=coding)
