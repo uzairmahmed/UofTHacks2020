@@ -20,9 +20,9 @@ def hello_gcs(event, context):
     print("Math")
     print(math)
 
-    writing = hand_write(image_bytes)
-    print("Writing")
-    print(writing)
+    #writing = hand_write(image_bytes)
+    #print("Writing")
+    #print(writing)
 
     write_to_db(math, 'math.json')
 
@@ -45,7 +45,7 @@ def hand_write(imagedata):
 def write_to_db(item, output_file_name):
     print("Items start writing")
     string_item = json.dumps(item)
-    
+
     bucket = client.get_bucket(OUTPUT_BUCKET)
     blob = bucket.get_blob(output_file_name)
     blob.upload_from_string(string_item, content_type="json")
