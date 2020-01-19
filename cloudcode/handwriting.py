@@ -13,8 +13,8 @@ def handWriting_OCR(file_info):
 
     response = client.document_text_detection(image=image)
 
-    print(response)
-
+    #print(response)
+    """
     for page in response.full_text_annotation.pages:
         for block in page.blocks:
             print('\nBlock confidence: {}\n'.format(block.confidence))
@@ -33,4 +33,6 @@ def handWriting_OCR(file_info):
                     for symbol in word.symbols:
                         print('\tSymbol: {} (confidence: {})'.format(
                             symbol.text, symbol.confidence))
+    """
     print (response.full_text_annotation)
+    print("finished handwriting")
