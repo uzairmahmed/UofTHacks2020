@@ -27,7 +27,8 @@ def hello_gcs(event, context):
          event (dict): Event payload.
          context (google.cloud.functions.Context): Metadata for the event.
     """
-    meta_id = "math"
+
+    meta_id = get_meta_id(event)
     data = {}
 
     #Image in bytes
@@ -48,10 +49,25 @@ def hello_gcs(event, context):
         #Image ran through OCR api for coding
         coding = hand_write(image_bytes)
         data = parse_for_db(mode="code", payload=coding)
-
-    data["payload"].replace("'", "\"")
+    
+    elif meta_id == "other":
+        data = parse_for_db(mode="other", payload=image_bytes)
 
     write_to_db(data=data, mode=meta_id)
+
+def get_meta_id(event):
+    bucket = client.get_bucket(event['bucket'])
+    blob = bucket.get_blob(event['name'])
+    meta_dict = blob.metadata
+
+    meta_id = "other"
+
+    try:
+        meta_id = meta_dict["mode"]
+    except:
+        print("No meta data")
+    
+    return meta_id
 
 def parse_for_db(mode, payload):
     parsed = {}
