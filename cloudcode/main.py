@@ -16,7 +16,7 @@ client = storage.Client()
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r"keys.json"
 
 # FIREBASE
-MAIN_COLLECTION=u'Documents'
+MAIN_COLLECTION=u"Documents"
 cred = credentials.Certificate("keys.json")
 firebase_admin.initialize_app(cred)
 db = firestore.client()
@@ -49,6 +49,8 @@ def hello_gcs(event, context):
         coding = hand_write(image_bytes)
         data = parse_for_db(mode="code", payload=coding)
 
+    data["payload"].replace("'", "\"")
+
     write_to_db(data=data, mode=meta_id)
 
 def parse_for_db(mode, payload):
@@ -76,7 +78,7 @@ def hand_write(imagedata):
 def write_to_db(data, mode):
     print("Writing to database")
     
-    doc_name = 'demo'
+    doc_name = "demo"
 
     document = get_document_contents(doc_name)
 
