@@ -25,6 +25,8 @@ import os
 API_ID = os.getenv('API_ID')
 API_KEY = os.getenv('API_KEY')
 
+#file_info is the equivalent of writing open(file_name, 'rb').read()
+
 def handToMath(file_info):
     image_uri = "data:image/jpg;base64," + base64.b64encode(file_info).decode()
     r = requests.post("https://api.mathpix.com/v3/latex",

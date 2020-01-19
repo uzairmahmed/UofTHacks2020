@@ -14,12 +14,15 @@ def hello_gcs(event, context):
          event (dict): Event payload.
          context (google.cloud.functions.Context): Metadata for the event.
     """
+    #Image in bytes
     image_bytes = read_image(event, context)
 
+    #Image ran through math api
     math = math_pix(image_bytes)
     print("Math")
     print(math)
 
+    #Image ran through OCR api
     writing = hand_write(image_bytes)
     print("Writing")
     print(writing)
