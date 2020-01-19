@@ -76,7 +76,7 @@ def write_to_fire(doc_name, data, index):
     print(u"STUFF{}".format(doc_name))
     print(u"STUFF{}".format(data))
     print(u"STUFF{}".format(index))
-    fire_data = {index: data}
+    fire_data = {index: str(data)}
     db.collection(MAIN_COLLECTION).document(doc_name).set(fire_data)
 
 
