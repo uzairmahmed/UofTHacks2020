@@ -1,12 +1,8 @@
-<<<<<<< HEAD
 .git
 .vscode
 .idea
 .env
 env
-=======
-# ignore the following files
->>>>>>> Handwriting demo done
 MathAPI/keys.json
 HandWritingAPI/keys.json
 iPadApp/.DS_Store
