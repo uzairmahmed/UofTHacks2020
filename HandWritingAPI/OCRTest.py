@@ -22,5 +22,14 @@ def handWriting_OCR(file_path):
     loaded = json.loads(dump)
     return loaded["text"]
 
+def parse_for_db(mode, payload):
+    parsed = {}
+    parsed["mode"] = mode
+    parsed["payload"] = payload
+    return parsed
 
-print(handWriting_OCR(file_name))
+
+output = handWriting_OCR(file_name)
+print(output)
+print(parse_for_db(0,output))
+

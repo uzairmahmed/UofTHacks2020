@@ -39,5 +39,12 @@ def handToMath(file_path):
     loaded = json.loads(dump)
     return loaded["latex_normal"]
 
+def parse_for_db(mode, payload):
+    parsed = {}
+    parsed["mode"] = mode
+    parsed["payload"] = payload
+    return parsed
 
-print(handToMath(file_name))
+output = handToMath(file_name)
+print(output)
+print(parse_for_db(1,output))
