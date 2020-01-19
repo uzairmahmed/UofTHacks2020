@@ -27,25 +27,29 @@ def hello_gcs(event, context):
          event (dict): Event payload.
          context (google.cloud.functions.Context): Metadata for the event.
     """
+    meta_id = "math"
+    data = {}
+
     #Image in bytes
     image_bytes = read_image(event, context)
 
-    #Image ran through math api
-    math = math_pix(image_bytes)
-    print("Math")
-    print(math)
-    #parsedMath = parse_for_db("math", math)
+    if meta_id == "math":
+        #Image ran through math api
+        math = math_pix(image_bytes)
+        data = parse_for_db(mode="math", payload=math)
 
-    #Image ran through OCR api
-    writing = hand_write(image_bytes)
-    print("Writing")
-    print(writing)
-    #parsedWrite = parse_for_db("write", writing)
 
-    write_to_db(data=math["latex_normal"], mode="math")
+    else if meta_id == "write"
+        #Image ran through OCR api
+        writing = hand_write(image_bytes)
+        data = parse_for_db(mode="write", payload=writing)
 
-    #write_to_db(parsedMath, 'math.json')
-    #write_to_db(parsedWrite, 'write.json')
+    else if meta_id == "code"
+        #Image ran through OCR api for coding
+        coding = hand_write(image_bytes)
+        data = parse_for_db(mode="code", payload=coding)
+
+    write_to_db(data=data, mode=meta_id)
 
 def parse_for_db(mode, payload):
     parsed = {}
@@ -68,16 +72,6 @@ def math_pix(imagedata):
 def hand_write(imagedata):
     image_info = get_writing(imagedata)
     return image_info
-<<<<<<< HEAD
-    
-=======
-
-def write_to_db(item, output_file_name):
-    print("Items start writing")
-    print("Item",item)
-    string_item = json.dumps(item)
-    print("String Item", string_item)
->>>>>>> 9545e87dbddec0e4c93439b7e1fecd84c4d627d0
 
 def write_to_db(data, mode):
     print("Writing to database")
