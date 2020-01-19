@@ -40,7 +40,7 @@ def hello_gcs(event, context):
     print("Writing")
     print(writing)
 
-    write_to_db(data=math, mode="math")
+    #write_to_db(data=math, mode="math")
 
     #OLD write_to_db
     #write_to_db(math, 'math.json')
