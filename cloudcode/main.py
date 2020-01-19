@@ -11,16 +11,16 @@ from handwriting import handWriting_OCR as get_writing
 import firebase_admin
 from firebase_admin import credentials, firestore
 
-# GCS
-OUTPUT_BUCKET = "ipad-notes-output"
-client = storage.Client()
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r"keys.json"
-
 # FIREBASE
 MAIN_COLLECTION=u'Documents'
 cred = credentials.Certificate("./serviceAccountKey.json")
 firebase_admin.initialize_app(cred)
 db = firestore.client()
+
+# GCS
+OUTPUT_BUCKET = "ipad-notes-output"
+client = storage.Client()
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r"keys.json"
 
 def hello_gcs(event, context):
     """Triggered by a change to a Cloud Storage bucket.
