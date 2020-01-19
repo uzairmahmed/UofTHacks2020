@@ -66,7 +66,7 @@ def write_to_db(data, mode):
 
     document = get_document_contents(doc_name)
 
-    last_index = get_last_index(document)
+    last_index = get_index(document)
 
     print(u"Last index:{}".format(last_index))
 
