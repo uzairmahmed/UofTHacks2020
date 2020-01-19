@@ -61,17 +61,25 @@ def hand_write(imagedata):
 
 def write_to_db(data, mode):
     print("Writing to database")
-    document = get_document_contents()
-    if mode == "math":
-        pass
-
-    #TODO later
-    else:
-        pass
-
-
-def get_document_contents():
+    
     doc_name = 'demo'
+
+    document = get_document_contents(doc_name)
+
+    last_index = get_last_index(document)
+
+    print(u"Last index:{}".format(last_index))
+
+    write_to_fire(doc_name, data, last_index + 1)
+
+def write_to_fire(doc_name, data, index):
+    db.collection(MAIN_COLLECTION).document(doc_name).set({index:data})
+
+
+def get_last_index(document):
+    return len(list(document.keys)) - 1
+
+def get_document_contents(doc_name):
     doc_contents = None
     documents = get_document(doc_name)
 
