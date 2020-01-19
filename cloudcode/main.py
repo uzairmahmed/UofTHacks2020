@@ -40,7 +40,7 @@ def hello_gcs(event, context):
     print("Writing")
     print(writing)
 
-    write_to_db(data=math, mode="math")
+    write_to_db(data=math["latex_normal"], mode="math")
 
 def read_image(event, context):
     # Get the file that has been uploaded to GCS
@@ -73,7 +73,8 @@ def write_to_db(data, mode):
     write_to_fire(doc_name, data, last_index + 1)
 
 def write_to_fire(doc_name, data, index):
-    db.collection(MAIN_COLLECTION).document(doc_name).set({index:data})
+    fire_data = {index: data}
+    db.collection(MAIN_COLLECTION).document(doc_name).set(fire_data)
 
 
 def get_last_index(document):
