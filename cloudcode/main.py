@@ -40,11 +40,7 @@ def hello_gcs(event, context):
     print("Writing")
     print(writing)
 
-    #write_to_db(data=math, mode="math")
-
-    #OLD write_to_db
-    #write_to_db(math, 'math.json')
-    #write_to_db(writing, 'write.json')
+    write_to_db(data=math, mode="math")
 
 def read_image(event, context):
     # Get the file that has been uploaded to GCS
@@ -85,7 +81,8 @@ def get_documents():
     print("Checking documents")
     docs = db.collection(MAIN_COLLECTION).stream()
     print("Documents found")
-    print(docs)
+    print("Doctor:",type(docs))
+    print("Doctor:",docs)
     return docs
 
 def start_fire():
