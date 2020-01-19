@@ -23,18 +23,19 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="hrX-mT-KH7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="15m-RL-4Lg"/>
-                            <constraint firstItem="hrX-mT-KH7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="VxL-Ks-tV9"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hrX-mT-KH7" secondAttribute="trailing" id="gUQ-Ss-0qs"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="hrX-mT-KH7" secondAttribute="bottom" id="jc3-cg-GiH"/>
+                            <constraint firstItem="hrX-mT-KH7" firstAttribute="leading" secondItem="8VJ-Pw-0F3" secondAttribute="leading" id="15m-RL-4Lg"/>
+                            <constraint firstItem="hrX-mT-KH7" firstAttribute="top" secondItem="8VJ-Pw-0F3" secondAttribute="top" id="VxL-Ks-tV9"/>
+                            <constraint firstItem="8VJ-Pw-0F3" firstAttribute="trailing" secondItem="hrX-mT-KH7" secondAttribute="trailing" id="gUQ-Ss-0qs"/>
+                            <constraint firstItem="8VJ-Pw-0F3" firstAttribute="bottom" secondItem="hrX-mT-KH7" secondAttribute="bottom" id="jc3-cg-GiH"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <viewLayoutGuide key="safeArea" id="8VJ-Pw-0F3"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="rWB-zb-Szm" userLabel="Navigation Item">
-                        <leftBarButtonItems>
-                            <barButtonItem title="Item" id="DKD-wh-Xrn" userLabel="Undo Button Item"/>
-                            <barButtonItem title="Item" id="LMg-cx-3RU" userLabel="Redo Button Item"/>
-                        </leftBarButtonItems>
+                    <navigationItem key="navigationItem" title="UofT Hacks" id="rWB-zb-Szm" userLabel="Navigation Item">
+                        <barButtonItem key="rightBarButtonItem" title="Math" id="i40-Om-Tmm" userLabel="Math">
+                            <connections>
+                                <action selector="mathButton:" destination="BYZ-38-t0r" id="7ed-Sh-WAQ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="canvasView" destination="hrX-mT-KH7" id="Hgw-XA-IWC"/>
@@ -68,29 +69,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="afA-EW-npq">
-                            <size key="itemSize" width="50" height="50"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="afA-EW-npq">
+                            <size key="itemSize" width="200" height="291"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="sectionInset" minX="20" minY="10" maxX="20" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ThumbnailCell" id="5ka-rV-WyU" userLabel="Thumbnail Cell" customClass="ThumbnailCollectionViewCell" customModule="UofTHacks" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <rect key="frame" x="20" y="10" width="200" height="291"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="yoG-lj-IzI">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="291"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HQ1-dE-Qll">
-                                            <rect key="frame" x="20" y="20" width="10" height="10"/>
+                                            <rect key="frame" x="0.0" y="20" width="200" height="261"/>
+                                            <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="HQ1-dE-Qll" firstAttribute="top" secondItem="yoG-lj-IzI" secondAttribute="top" constant="20" id="B2Y-mW-G0O"/>
-                                        <constraint firstItem="HQ1-dE-Qll" firstAttribute="leading" secondItem="yoG-lj-IzI" secondAttribute="leading" constant="20" id="Mvc-RH-bfl"/>
-                                        <constraint firstAttribute="trailing" secondItem="HQ1-dE-Qll" secondAttribute="trailing" constant="20" id="POL-fz-IeA"/>
-                                        <constraint firstAttribute="bottom" secondItem="HQ1-dE-Qll" secondAttribute="bottom" constant="20" id="R5j-5C-MDS"/>
+                                        <constraint firstAttribute="trailing" secondItem="HQ1-dE-Qll" secondAttribute="trailing" constant="10" id="Bbx-fN-LQw"/>
+                                        <constraint firstItem="HQ1-dE-Qll" firstAttribute="leading" secondItem="yoG-lj-IzI" secondAttribute="leading" id="Mvc-RH-bfl"/>
+                                        <constraint firstAttribute="trailing" secondItem="HQ1-dE-Qll" secondAttribute="trailing" id="POL-fz-IeA"/>
+                                        <constraint firstAttribute="bottom" secondItem="HQ1-dE-Qll" secondAttribute="bottom" constant="10" id="R5j-5C-MDS"/>
                                     </constraints>
                                 </collectionViewCellContentView>
                                 <connections>
@@ -104,7 +107,7 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="Jyf-9A-hMo">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="4jy-KE-HpV">
+                        <barButtonItem key="rightBarButtonItem" title="New Note" id="4jy-KE-HpV">
                             <connections>
                                 <action selector="newDrawing:" destination="a3o-gW-Ixy" id="KA7-2U-MFW"/>
                             </connections>

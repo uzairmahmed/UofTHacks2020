@@ -11,25 +11,22 @@ import PencilKit
 
 class ViewController: UIViewController, PKCanvasViewDelegate, PKToolPickerObserver, UIScreenshotServiceDelegate {
 
-    //@IBOutlet weak var redoBarButtonItem: UIBarButtonItem!
-    //@IBOutlet weak var undoBarButtonItem: UIBarButtonItem!
-
     @IBOutlet weak var canvasView: PKCanvasView!
     
     var dataModelController: DataModelController!
     var drawingIndex: Int = 0
     var hasModifiedDrawing = false
     static let canvasOverscrollHeight: CGFloat = 500
-    
     /// Set up the drawing initially.
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         // Set up the canvas view with the first drawing from the data model.
         canvasView.delegate = self
         canvasView.drawing = dataModelController.drawings[drawingIndex]
         canvasView.alwaysBounceVertical = true
         canvasView.allowsFingerDrawing = false
+                view.addSubview(canvasView)
         
         // Set up the tool picker, using the window of our parent because our view has not
         // been added to a window yet.
@@ -37,7 +34,6 @@ class ViewController: UIViewController, PKCanvasViewDelegate, PKToolPickerObserv
             toolPicker.setVisible(true, forFirstResponder: canvasView)
             toolPicker.addObserver(canvasView)
             toolPicker.addObserver(self)
-            
             updateLayout(for: toolPicker)
             canvasView.becomeFirstResponder()
         }
@@ -48,7 +44,7 @@ class ViewController: UIViewController, PKCanvasViewDelegate, PKToolPickerObserv
         // Set this view controller as the delegate for creating full screenshots.
         parent?.view.window?.windowScene?.screenshotService?.delegate = self
     }
-    
+   
     func updateLayout(for toolPicker: PKToolPicker) {
         let obscuredFrame = toolPicker.frameObscured(in: view)
         
@@ -58,6 +54,7 @@ class ViewController: UIViewController, PKCanvasViewDelegate, PKToolPickerObserv
             canvasView.contentInset = .zero
             navigationItem.leftBarButtonItems = []
         }
+            
         
         // Otherwise, the bottom of the canvas should be inset to the top of the
         // tool picker, and the tool picker no longer displays its own undo and
@@ -68,7 +65,7 @@ class ViewController: UIViewController, PKCanvasViewDelegate, PKToolPickerObserv
         }
         canvasView.scrollIndicatorInsets = canvasView.contentInset
     }
-    
+ 
     /// When the view is resized, adjust the canvas scale so that it is zoomed to the default `canvasWidth`.
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -142,65 +139,23 @@ class ViewController: UIViewController, PKCanvasViewDelegate, PKToolPickerObserv
         updateLayout(for: toolPicker)
     }
     
-    /// Delegate method: Generate a screenshot as a PDF.
-       func screenshotService(
-           _ screenshotService: UIScreenshotService,
-           generatePDFRepresentationWithCompletion completion:
-           @escaping (_ PDFData: Data?, _ indexOfCurrentPage: Int, _ rectInCurrentPage: CGRect) -> Void) {
-           
-           // Find out which part of the drawing is actually visible.
-           let drawing = canvasView.drawing
-           let visibleRect = canvasView.bounds
-           
-           // Convert to PDF coordinates, with (0, 0) at the bottom left hand corner,
-           // making the height a bit bigger than the current drawing.
-           let pdfWidth = DataModel.canvasWidth
-           let pdfHeight = drawing.bounds.maxY + 100
-           let canvasContentSize = canvasView.contentSize.height - ViewController.canvasOverscrollHeight
-           
-           let xOffsetInPDF = pdfWidth - (pdfWidth * visibleRect.minX / canvasView.contentSize.width)
-           let yOffsetInPDF = pdfHeight - (pdfHeight * visibleRect.maxY / canvasContentSize)
-           let rectWidthInPDF = pdfWidth * visibleRect.width / canvasView.contentSize.width
-           let rectHeightInPDF = pdfHeight * visibleRect.height / canvasContentSize
-           
-           let visibleRectInPDF = CGRect(
-               x: xOffsetInPDF,
-               y: yOffsetInPDF,
-               width: rectWidthInPDF,
-               height: rectHeightInPDF)
-           
-           // Generate the PDF on a background thread.
-           DispatchQueue.global(qos: .background).async {
-               
-               // Generate a PDF.
-               let bounds = CGRect(x: 0, y: 0, width: pdfWidth, height: pdfHeight)
-               let mutableData = NSMutableData()
-               UIGraphicsBeginPDFContextToData(mutableData, bounds, nil)
-               UIGraphicsBeginPDFPage()
-               
-               // Generate images in the PDF, strip by strip.
-               var yOrigin: CGFloat = 0
-               let imageHeight: CGFloat = 1024
-               while yOrigin < bounds.maxY {
-                   let imgBounds = CGRect(x: 0, y: yOrigin, width: DataModel.canvasWidth, height: min(imageHeight, bounds.maxY - yOrigin))
-                   let img = drawing.image(from: imgBounds, scale: 2)
-                   img.draw(in: imgBounds)
-                   yOrigin += imageHeight
-               }
-               
-               UIGraphicsEndPDFContext()
-               
-               // Invoke the completion handler with the generated PDF data.
-               completion(mutableData as Data, 0, visibleRectInPDF)
-           }
-       }
-    
+
+    @IBAction func mathButton(_ sender: Any) {
+        let pasteboard = UIPasteboard.general
+        if !pasteboard.hasImages {
+            print("gay")
+        }
+        else{
+            let image = pasteboard.image
+            UIImageWriteToSavedPhotosAlbum(image!, self, nil, nil)
+        }
+        
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
     }
-
-
 }
 

@@ -1,10 +1,3 @@
-/*
-See LICENSE folder for this sample’s licensing information.
-
-Abstract:
-The app's data model for storing drawings, thumbnails, and signatures.
-*/
-
 /// Underlying the app's data model is a cross-platform `PKDrawing` object. `PKDrawing` adheres to `Codable`
 /// in Swift, or you can fetch its data representation as a `Data` object through its `dataRepresentation()`
 /// method. `PKDrawing` is the only PencilKit type supported on non-iOS platforms.
@@ -55,7 +48,7 @@ class DataModelController {
             }
         }
     }
-    
+
     /// Dispatch queues for the background operations done by this controller.
     private let thumbnailQueue = DispatchQueue(label: "ThumbnailQueue", qos: .background)
     private let serializationQueue = DispatchQueue(label: "SerializationQueue", qos: .background)
@@ -71,12 +64,7 @@ class DataModelController {
         get { dataModel.drawings }
         set { dataModel.drawings = newValue }
     }
-    /// Computed property providing access to the signature in the data model.
-    var signature: PKDrawing {
-        get { dataModel.signature }
-        set { dataModel.signature = newValue }
-    }
-    
+
     /// Initialize a new data model.
     init() {
         loadDataModel()
