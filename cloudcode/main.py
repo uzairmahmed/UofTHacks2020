@@ -39,12 +39,15 @@ def math_pix(imagedata):
     return image_info
 
 def hand_write(imagedata):
-    image_info = get_writing(imagedata)
-    return image_info
+    #image_info = get_writing(imagedata)
+    #return image_info
 
 def write_to_db(item, output_file_name):
     print("Items start writing")
+    print("Item",item)
     string_item = json.dumps(item)
+    print("String Item", string_item)
+
 
     bucket = client.get_bucket(OUTPUT_BUCKET)
     blob = bucket.get_blob(output_file_name)
