@@ -3,7 +3,7 @@ import sys
 import json
 from google.cloud import storage
 from google.cloud import firestore
-import google.cloud.exceptions
+#import google.cloud.exceptions
 
 from MathPix import handToMath as get_math
 from handwriting import handWriting_OCR as get_writing
@@ -13,12 +13,11 @@ from firebase_admin import credentials, firestore
 
 # FIREBASE
 MAIN_COLLECTION=u'Documents'
-cred = credentials.Certificate("./serviceAccountKey.json")
+cred = credentials.Certificate("serviceAccountKey.json")
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
 # GCS
-OUTPUT_BUCKET = "ipad-notes-output"
 client = storage.Client()
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r"keys.json"
 
@@ -63,19 +62,6 @@ def hand_write(imagedata):
     image_info = get_writing(imagedata)
     return image_info
     
-#Old write_to_db with GCS
-"""
-def write_to_db(item, output_file_name):
-    print("Items start writing")
-    print("Item",item)
-    string_item = json.dumps(item)
-    print("String Item", string_item)
-
-    bucket = client.get_bucket(OUTPUT_BUCKET)
-    blob = bucket.blob(output_file_name)
-    blob.upload_from_string(data=string_item)
-    print("Items done writing")
-"""
 
 def write_to_db(data, mode):
     print("Writing to database")
