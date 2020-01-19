@@ -45,7 +45,7 @@ def hello_gcs(event, context):
         writing = hand_write(image_bytes)
         data = parse_for_db(mode="write", payload=writing)
 
-    elif meta_id == "code":
+    elif meta_id == "python" or meta_id == "java":
         #Image ran through OCR api for coding
         coding = hand_write(image_bytes)
         data = parse_for_db(mode="code", payload=coding)
