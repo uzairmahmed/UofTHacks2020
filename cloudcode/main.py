@@ -61,7 +61,7 @@ def hand_write(imagedata):
 
 def write_to_db(data, mode):
     print("Writing to database")
-    document = get_document()
+    document = get_document_contents()
     if mode == "math":
         pass
 
@@ -70,7 +70,7 @@ def write_to_db(data, mode):
         pass
 
 
-def get_document():
+def get_document_contents():
     doc_name = 'demo'
     doc_contents = None
     documents = get_document(doc_name)
