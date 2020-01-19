@@ -12,6 +12,4 @@ HandWritingAPI/keys.json
 iPadApp/.DS_Store
 
 
-MathAPI
-HandWritingAPI
-iPadApp
+/Webapp/node_modules
