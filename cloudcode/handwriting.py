@@ -5,17 +5,13 @@ import json
 
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r"keys.json"
 
-client = vision.ImageAnnotatorClient()
-
 def handWriting_OCR(file_info):
     """Detects document features in an image."""
-    from google.cloud import vision
-    import io
     client = vision.ImageAnnotatorClient()
 
     image = vision.types.Image(content=file_info)
 
-    response = client.document_text_detection(image=file_info)
+    response = client.document_text_detection(image=image)
 
     print(response)
 
