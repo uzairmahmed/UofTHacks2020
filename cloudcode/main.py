@@ -80,7 +80,7 @@ def get_document():
         print(u'Contents:{}'.format(doc_contents))
         print(u'Contents Type:{}'.format(type(doc_contents)))
     except:
-        print(u'Can\'t find document)
+        print(u'Can\'t find document')
 
     return doc_contents
 
