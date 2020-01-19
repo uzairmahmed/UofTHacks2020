@@ -1,6 +1,7 @@
 import os, io
 from google.cloud import vision
 from google.cloud.vision import types
+from google.protobuf.json_format import MessageToJson
 import json
 
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r"keys.json"
