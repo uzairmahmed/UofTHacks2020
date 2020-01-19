@@ -20,11 +20,12 @@ def hello_gcs(event, context):
     print("Math")
     print(math)
 
-    #writing = hand_write(image_bytes)
-    #print("Writing")
-    #print(writing)
+    writing = hand_write(image_bytes)
+    print("Writing")
+    print(writing)
 
     write_to_db(math, 'math.json')
+    write_to_db(writing, 'write.json')
 
 def read_image(event, context):
     # Get the file that has been uploaded to GCS
