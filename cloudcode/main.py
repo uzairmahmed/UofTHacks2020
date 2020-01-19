@@ -31,16 +31,16 @@ def hello_gcs(event, context):
     image_bytes = read_image(event, context)
 
     #Image ran through math api
-    #math = math_pix(image_bytes)
-    #print("Math")
-    #print(math)
+    math = math_pix(image_bytes)
+    print("Math")
+    print(math)
 
     #Image ran through OCR api
-    #writing = hand_write(image_bytes)
-    #print("Writing")
-    #print(writing)
+    writing = hand_write(image_bytes)
+    print("Writing")
+    print(writing)
 
-    #write_to_db(data=math, mode="math")
+    write_to_db(data=math, mode="math")
 
     #OLD write_to_db
     #write_to_db(math, 'math.json')
