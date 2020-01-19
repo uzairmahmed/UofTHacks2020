@@ -37,9 +37,9 @@ def hello_gcs(event, context):
     print(math)
 
     #Image ran through OCR api
-    #writing = hand_write(image_bytes)
-    #print("Writing")
-    #print(writing)
+    writing = hand_write(image_bytes)
+    print("Writing")
+    print(writing)
 
     write_to_db(data=math, mode="math")
 
