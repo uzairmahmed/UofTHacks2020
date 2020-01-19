@@ -34,5 +34,7 @@ def handWriting_OCR(file_info):
                         print('\tSymbol: {} (confidence: {})'.format(
                             symbol.text, symbol.confidence))
     """
-    print (response.full_text_annotation)
+    #print (response.full_text_annotation)
     print("finished handwriting")
+
+    return response
