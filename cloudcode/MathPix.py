@@ -28,6 +28,7 @@ API_KEY = os.getenv('API_KEY')
 #file_info is the equivalent of writing open(file_name, 'rb').read()
 
 def handToMath(file_info):
+    """ Detects Mathematical features in an Image """
     image_uri = "data:image/jpg;base64," + base64.b64encode(file_info).decode()
     r = requests.post("https://api.mathpix.com/v3/latex",
         data=json.dumps({'src': image_uri, 'formats': ['latex_normal']}),
@@ -37,4 +38,4 @@ def handToMath(file_info):
     dump = json.dumps(json.loads(r.text), indent=4, sort_keys=True)
     loaded = json.loads(dump)
 
-    return(loaded)
+    return(loaded["latex_normal"])
