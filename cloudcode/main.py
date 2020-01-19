@@ -66,9 +66,9 @@ def write_to_db(data, mode):
 
     document = get_document_contents(doc_name)
 
-    last_index = get_index(document)
+    index = get_index(document)
 
-    print(u"Last index:{}".format(last_index))
+    print(u"index:{}".format(index))
 
     write_to_fire(doc_name=doc_name, data=data, index=index+1)
 
