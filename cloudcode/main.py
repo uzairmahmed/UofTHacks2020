@@ -77,7 +77,7 @@ def write_to_fire(doc_name, data, index):
 
 
 def get_last_index(document):
-    return len(list(document.keys)) - 1
+    return len(list(document.keys())) - 1
 
 def get_document_contents(doc_name):
     doc_contents = None
