@@ -70,9 +70,12 @@ def write_to_db(data, mode):
 
     print(u"Last index:{}".format(last_index))
 
-    write_to_fire(doc_name, data, last_index + 1)
+    write_to_fire(doc_name=doc_name, data=data, index=last_index+1)
 
 def write_to_fire(doc_name, data, index):
+    print(u"STUFF{}".format(doc_name))
+    print(u"STUFF{}".format(data))
+    print(u"STUFF{}".format(index))
     fire_data = {index: data}
     db.collection(MAIN_COLLECTION).document(doc_name).set(fire_data)
 
