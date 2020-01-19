@@ -10,11 +10,10 @@ def handWriting_OCR(file_info):
     print("Start Writing")
 
     client = vision.ImageAnnotatorClient()
-
     image = vision.types.Image(content=file_info)
 
     response = client.document_text_detection(image=image)
 
-    print("End Writing")
-
-    return response
+    dump = json.dumps(json.loads(MessageToJson(response.full_text_annotation)), indent=4, sort_keys=True)
+    loaded = json.loads(dump)
+    return loaded["text"]

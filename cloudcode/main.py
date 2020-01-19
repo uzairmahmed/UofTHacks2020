@@ -34,13 +34,24 @@ def hello_gcs(event, context):
     math = math_pix(image_bytes)
     print("Math")
     print(math)
+    #parsedMath = parse_for_db("math", math)
 
     #Image ran through OCR api
     writing = hand_write(image_bytes)
     print("Writing")
     print(writing)
+    #parsedWrite = parse_for_db("write", writing)
 
     write_to_db(data=math["latex_normal"], mode="math")
+
+    #write_to_db(parsedMath, 'math.json')
+    #write_to_db(parsedWrite, 'write.json')
+
+def parse_for_db(mode, payload):
+    parsed = {}
+    parsed["mode"] = mode
+    parsed["payload"] = payload
+    return parsed
 
 def read_image(event, context):
     # Get the file that has been uploaded to GCS
@@ -57,7 +68,16 @@ def math_pix(imagedata):
 def hand_write(imagedata):
     image_info = get_writing(imagedata)
     return image_info
+<<<<<<< HEAD
     
+=======
+
+def write_to_db(item, output_file_name):
+    print("Items start writing")
+    print("Item",item)
+    string_item = json.dumps(item)
+    print("String Item", string_item)
+>>>>>>> 9545e87dbddec0e4c93439b7e1fecd84c4d627d0
 
 def write_to_db(data, mode):
     print("Writing to database")
