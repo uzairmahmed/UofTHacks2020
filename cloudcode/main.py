@@ -1,12 +1,24 @@
 import sys
 import json
 from google.cloud import storage
+from google.cloud import firestore
+import google.cloud.exceptions
 
 from MathPix import handToMath as get_math
 from handwriting import handWriting_OCR as get_writing
 
+import firebase_admin
+from firebase_admin import credentials, firestore
+
+# GCS
 OUTPUT_BUCKET = "ipad-notes-output"
 client = storage.Client()
+
+# FIREBASE
+MAIN_COLLECTION=u'Documents'
+cred = credentials.Certificate("./serviceAccountKey.json")
+firebase_admin.initialize_app(cred)
+db.firestore.client()
 
 def hello_gcs(event, context):
     """Triggered by a change to a Cloud Storage bucket.
@@ -23,12 +35,15 @@ def hello_gcs(event, context):
     print(math)
 
     #Image ran through OCR api
-    writing = hand_write(image_bytes)
-    print("Writing")
-    print(writing)
+    #writing = hand_write(image_bytes)
+    #print("Writing")
+    #print(writing)
 
-    write_to_db(math, 'math.json')
-    write_to_db(writing, 'write.json')
+    write_to_db(data=math, mode="math")
+
+    #OLD write_to_db
+    #write_to_db(math, 'math.json')
+    #write_to_db(writing, 'write.json')
 
 def read_image(event, context):
     # Get the file that has been uploaded to GCS
@@ -46,6 +61,8 @@ def hand_write(imagedata):
     image_info = get_writing(imagedata)
     return image_info
     
+#Old write_to_db with GCS
+"""
 def write_to_db(item, output_file_name):
     print("Items start writing")
     print("Item",item)
@@ -56,6 +73,36 @@ def write_to_db(item, output_file_name):
     blob = bucket.blob(output_file_name)
     blob.upload_from_string(data=string_item)
     print("Items done writing")
+"""
 
+def write_to_db(data, mode):
+    print("Writing to database")
+    current_element = check_current_element()
+    if mode == "math":
+        pass
+
+    #TODO later
+    else:
+        pass
+
+#TODO: Finish this
+def check_current_element():
+    print("Checking current elements")
+    documents = get_documents()
+    print("Documents received")
+
+    return 0
+
+def get_documents():
+    print("Checking documents")
+    docs = db.collection(MAIN_COLLECTION).stream()
+    print("Documents found")
+    print(docs)
+    return docs
+
+def start_fire():
+    from google.cloud import firestore
+    db = firestore.Client()
+    return db
 
 sys.modules[__name__] = hello_gcs
