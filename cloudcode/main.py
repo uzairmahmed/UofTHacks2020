@@ -50,7 +50,7 @@ def write_to_db(item, output_file_name):
 
     bucket = client.get_bucket(OUTPUT_BUCKET)
     blob = bucket.blob(output_file_name)
-    blob.upload_from_string(string_item, content_type="json")
+    blob.upload_from_string(data=string_item)
     print("Items done writing")
 
 
