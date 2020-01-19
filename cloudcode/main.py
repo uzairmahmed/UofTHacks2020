@@ -70,7 +70,7 @@ def write_to_db(data, mode):
 
     print(u"Last index:{}".format(last_index))
 
-    write_to_fire(doc_name=doc_name, data=data, index=last_index+1)
+    write_to_fire(doc_name=doc_name, data=data, index=index+1)
 
 def write_to_fire(doc_name, data, index):
     print(u"STUFF{}".format(doc_name))
@@ -80,8 +80,8 @@ def write_to_fire(doc_name, data, index):
     db.collection(MAIN_COLLECTION).document(doc_name).update(fire_data)
 
 
-def get_last_index(document):
-    return len(list(document.keys())) - 1
+def get_index(document):
+    return len(list(document.keys()))
 
 def get_document_contents(doc_name):
     doc_contents = None
