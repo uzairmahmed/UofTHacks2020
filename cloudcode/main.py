@@ -76,7 +76,7 @@ def get_document_contents():
     documents = get_document(doc_name)
 
     try:
-        doc_contents = documents.get()
+        doc_contents = documents.get().to_dict()
         print(u'Contents:{}'.format(doc_contents))
         print(u'Contents Type:{}'.format(type(doc_contents)))
     except:
