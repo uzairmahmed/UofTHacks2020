@@ -1,8 +1,12 @@
 import sys
+import json
+from google.cloud import storage
 
 from MathPix import handToMath as get_math
 from handwriting import handWriting_OCR as get_writing
-from google.cloud import storage
+
+OUTPUT_BUCKET = "ipad-notes-output"
+client = storage.Client()
 
 def hello_gcs(event, context):
     """Triggered by a change to a Cloud Storage bucket.
@@ -20,11 +24,9 @@ def hello_gcs(event, context):
     print("Writing")
     print(writing)
 
-    return writing
+    write_to_db(math, 'math.json')
 
 def read_image(event, context):
-    client = storage.Client()
-
     # Get the file that has been uploaded to GCS
     bucket = client.get_bucket(event['bucket'])
     blob = bucket.get_blob(event['name'])
@@ -39,5 +41,15 @@ def math_pix(imagedata):
 def hand_write(imagedata):
     image_info = get_writing(imagedata)
     return image_info
+
+def write_to_db(item, output_file_name):
+    print("Items start writing")
+    string_item = json.dumps(item)
+    
+    bucket = client.get_bucket(OUTPUT_BUCKET)
+    blob = bucket.get_blob(output_file_name)
+    blob.upload_from_string(string_item, content_type="json")
+    print("Items done writing")
+
 
 sys.modules[__name__] = hello_gcs
