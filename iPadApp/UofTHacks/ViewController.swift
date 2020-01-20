@@ -8,6 +8,8 @@
 
 import UIKit
 import PencilKit
+import FirebaseStorage
+import Kingfisher
 
 class ViewController: UIViewController, PKCanvasViewDelegate, PKToolPickerObserver, UIScreenshotServiceDelegate {
 
@@ -141,15 +143,69 @@ class ViewController: UIViewController, PKCanvasViewDelegate, PKToolPickerObserv
     
 
     @IBAction func mathButton(_ sender: Any) {
+        upload("math")
+        
+    }
+    @IBAction func writeButton(_ sender: Any) {
+        upload("write")
+    }
+    @IBAction func javaButton(_ sender: Any) {
+        upload("java")
+    }
+    @IBAction func pythonButton(_ sender: Any) {
+        upload("python")
+    }
+    
+    func upload(_ userMode: String) {
         let pasteboard = UIPasteboard.general
         if !pasteboard.hasImages {
-            print("gay")
+            print("No Images")
         }
-        else{
-            let image = pasteboard.image
-            UIImageWriteToSavedPhotosAlbum(image!, self, nil, nil)
+        else {
+            let topImage = pasteboard.image
+            let bottomImage = UIImage(named: "bottom.png")
+
+            let size = CGSize(width: topImage!.size.width*2, height: topImage!.size.height*2)
+            UIGraphicsBeginImageContext(size)
+
+            let areaSize = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+            
+            bottomImage?.draw(in: areaSize)
+            
+            if self.traitCollection.userInterfaceStyle == .dark {
+                bottomImage?.withTintColor(.black)
+            }
+
+            topImage!.draw(in: areaSize, blendMode: .normal, alpha: 1)
+
+            let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+
+            UIGraphicsEndImageContext()
+            
+            guard let data = newImage.jpegData(compressionQuality: 1.0) else { return  }
+            let imageName = "photo"
+            let imageReference = Storage.storage().reference().child(imageName)
+            
+            var newMetadata = StorageMetadata()
+            newMetadata.customMetadata = [
+                "mode": userMode]
+                    
+            imageReference.putData(data, metadata: newMetadata) { (metadata, err) in
+                if let err = err {
+                    return
+                }
+            }
+            
+            imageReference.downloadURL(completion: { (url, err) in
+                if let err = err {
+                    return
+                }
+                
+                guard let url = url else {
+                    return
+                }
+            })
         }
-        
     }
 
     override func viewDidLoad() {

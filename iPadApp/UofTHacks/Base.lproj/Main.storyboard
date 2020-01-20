@@ -11,7 +11,7 @@
         <!--Drawing View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="DrawingViewController" id="BYZ-38-t0r" userLabel="Drawing View Controller" customClass="ViewController" customModule="UofTHacks" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DrawingViewController" id="BYZ-38-t0r" userLabel="Drawing View Controller" customClass="ViewController" customModule="STEM_Notes" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -30,12 +30,29 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8VJ-Pw-0F3"/>
                     </view>
-                    <navigationItem key="navigationItem" title="UofT Hacks" id="rWB-zb-Szm" userLabel="Navigation Item">
-                        <barButtonItem key="rightBarButtonItem" title="Math" id="i40-Om-Tmm" userLabel="Math">
-                            <connections>
-                                <action selector="mathButton:" destination="BYZ-38-t0r" id="7ed-Sh-WAQ"/>
-                            </connections>
-                        </barButtonItem>
+                    <navigationItem key="navigationItem" title="S.T.E.M. Notes" id="rWB-zb-Szm" userLabel="Navigation Item">
+                        <rightBarButtonItems>
+                            <barButtonItem title="Python" id="Tfd-FW-IfK" userLabel="Python">
+                                <connections>
+                                    <action selector="pythonButton:" destination="BYZ-38-t0r" id="1bo-Bd-5Ow"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Java" id="LiF-Bv-xjp" userLabel="Java">
+                                <connections>
+                                    <action selector="javaButton:" destination="BYZ-38-t0r" id="wTW-7R-TDr"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Math" id="i40-Om-Tmm" userLabel="Math">
+                                <connections>
+                                    <action selector="mathButton:" destination="BYZ-38-t0r" id="7ed-Sh-WAQ"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Write" id="ZKQ-kj-W5K">
+                                <connections>
+                                    <action selector="writeButton:" destination="BYZ-38-t0r" id="jyz-lU-fzv"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="canvasView" destination="hrX-mT-KH7" id="Hgw-XA-IWC"/>
@@ -48,7 +65,7 @@
         <!--Pencil Kit Draw Navigation Controller-->
         <scene sceneID="QKf-Wn-T1e">
             <objects>
-                <navigationController id="UML-77-6uA" userLabel="Pencil Kit Draw Navigation Controller" customClass="PencilKitDrawNavigationController" customModule="UofTHacks" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="UML-77-6uA" userLabel="Pencil Kit Draw Navigation Controller" customClass="PencilKitDrawNavigationController" customModule="STEM_Notes" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="AzS-hd-Zuk">
                         <rect key="frame" x="0.0" y="0.0" width="1194" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -64,7 +81,7 @@
         <!--Thumbnail Collection View Controller-->
         <scene sceneID="8xU-Uh-R85">
             <objects>
-                <collectionViewController id="a3o-gW-Ixy" userLabel="Thumbnail Collection View Controller" customClass="ThumbnailCollectionViewController" customModule="UofTHacks" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="a3o-gW-Ixy" userLabel="Thumbnail Collection View Controller" customClass="ThumbnailCollectionViewController" customModule="STEM_Notes" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="2ro-gP-xjX">
                         <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -76,7 +93,7 @@
                             <inset key="sectionInset" minX="20" minY="10" maxX="20" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ThumbnailCell" id="5ka-rV-WyU" userLabel="Thumbnail Cell" customClass="ThumbnailCollectionViewCell" customModule="UofTHacks" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ThumbnailCell" id="5ka-rV-WyU" userLabel="Thumbnail Cell" customClass="ThumbnailCollectionViewCell" customModule="STEM_Notes" customModuleProvider="target">
                                 <rect key="frame" x="20" y="10" width="200" height="291"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="yoG-lj-IzI">
