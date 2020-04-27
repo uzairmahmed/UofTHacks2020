@@ -3,6 +3,8 @@
 
 *Uzair Ahmed, Arjun Dureja, Farhan Mohammed, Martin Chak*
 
+**[https://devpost.com/software/stem-notes-c5i7ho](https://devpost.com/software/stem-notes-c5i7ho)**
+
 ![logo](https://raw.githubusercontent.com/uzairmahmed/UofTHacks2020/master/images/splash.png)
 
 ## Inspiration
